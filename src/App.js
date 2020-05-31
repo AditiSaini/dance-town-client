@@ -1,59 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Routes from "./Routes";
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Link, useHistory } from "react-router-dom";
+import { Auth } from "aws-amplify";
+import { LinkContainer } from "react-router-bootstrap";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { AppContext } from "./libs/contextLib";
+import "./App.css";
 
-import labels from './resources/textlabel.json';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+function App() {
+  const history = useHistory();
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
 
-const NavBar = () => {
-  const classes = useStyles();
+  async function handleLogout() {
+    await Auth.signOut();
+  
+    userHasAuthenticated(false);
+  
+    history.push("/login");
+  }
+
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      userHasAuthenticated(true);
+    }
+    catch (e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
+    }
+
+    setIsAuthenticating(false);
+  }
+
   return (
-    labels.map((label, i) =>
-      <div key = {i} className={classes.root}>
-        <AppBar position="static" color="primary">
-          <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              {label.app.name}
-            </Typography>
-            <div>
-              <Button href="/signup" color="inherit">
-                {label.common.signup}
-              </Button>
-              <Button href="/login" color="inherit">
-                {label.common.login}
-              </Button>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
-    ));
-}
-
-export default function ButtonAppBar() {
-  return (
-    <div>
-      <NavBar />
-      <Routes />
+    !isAuthenticating &&
+    <div className="App container">
+      <Navbar fluid collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">DanceTown</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullRight>
+            {isAuthenticated
+              ? <NavItem onClick={handleLogout}>Logout</NavItem>
+              : <>
+                <LinkContainer to="/signup">
+                  <NavItem>Signup</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/login">
+                  <NavItem>Login</NavItem>
+                </LinkContainer>
+              </>
+            }
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <AppContext.Provider
+        value={{ isAuthenticated, userHasAuthenticated }}
+      >
+        <Routes />
+      </AppContext.Provider>
     </div>
   );
 }
+
+export default App;
