@@ -1,0 +1,12 @@
+[{
+    "app": {
+        "name":"DanceTown",
+        "description": "All The Dance"
+    },
+    "common": {
+        "login": "Login",
+        "logout": "Logout",
+        "signup": "Sign Up",
+        "submit": "Submit"
+    }
+}]
