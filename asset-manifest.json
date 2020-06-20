@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/dance-town-client/static/css/main.541a3fdf.chunk.css",
+    "main.js": "/dance-town-client/static/js/main.f582e475.chunk.js",
+    "main.js.map": "/dance-town-client/static/js/main.f582e475.chunk.js.map",
+    "runtime-main.js": "/dance-town-client/static/js/runtime-main.078f421a.js",
+    "runtime-main.js.map": "/dance-town-client/static/js/runtime-main.078f421a.js.map",
+    "static/js/2.863ea805.chunk.js": "/dance-town-client/static/js/2.863ea805.chunk.js",
+    "static/js/2.863ea805.chunk.js.map": "/dance-town-client/static/js/2.863ea805.chunk.js.map",
+    "index.html": "/dance-town-client/index.html",
+    "precache-manifest.b8048492dbd867a6444957b0c8d85095.js": "/dance-town-client/precache-manifest.b8048492dbd867a6444957b0c8d85095.js",
+    "service-worker.js": "/dance-town-client/service-worker.js",
+    "static/css/main.541a3fdf.chunk.css.map": "/dance-town-client/static/css/main.541a3fdf.chunk.css.map",
+    "static/js/2.863ea805.chunk.js.LICENSE.txt": "/dance-town-client/static/js/2.863ea805.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.078f421a.js",
+    "static/js/2.863ea805.chunk.js",
+    "static/css/main.541a3fdf.chunk.css",
+    "static/js/main.f582e475.chunk.js"
+  ]
+}
