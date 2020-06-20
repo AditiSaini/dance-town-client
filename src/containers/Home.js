@@ -56,7 +56,7 @@ export default class Home extends Component {
               onClick={this.handleNoteClick}
             >
               <h4>
-                <b>{"\uFF0B"}</b> Create a new note
+                <b>{"\uFF0B"}</b> Create a new challenge
               </h4>
             </ListGroupItem>
     );
@@ -82,7 +82,7 @@ export default class Home extends Component {
   renderNotes() {
     return (
       <div className="notes">
-        <PageHeader>Your Notes</PageHeader>
+        <PageHeader>Your Challenges</PageHeader>
         <ListGroup>
           {!this.state.isLoading && this.renderNotesList(this.state.notes)}
         </ListGroup>
