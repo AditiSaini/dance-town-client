@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/dance-town-client/precache-manifest.0f044a141e940bea20047e44154256e0.js"
+  "/dance-town-client/precache-manifest.2ba67cb2be4c19ea30c101cf851db760.js"
 );
 
 self.addEventListener('message', (event) => {
