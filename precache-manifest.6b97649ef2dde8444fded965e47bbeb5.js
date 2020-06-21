@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "56ea8725bcb5280d47904dab73961ce3",
+    "revision": "963062534a783cf9f19127ea472be54f",
     "url": "/dance-town-client/index.html"
   },
   {
-    "revision": "30f9966976f7773871b6",
+    "revision": "6dab7a7f9301011a3c28",
     "url": "/dance-town-client/static/css/main.58335bf0.chunk.css"
   },
   {
-    "revision": "ecbe9c186fb85fd1144f",
-    "url": "/dance-town-client/static/js/2.b514a058.chunk.js"
+    "revision": "4e7b1ad841772ddd5d83",
+    "url": "/dance-town-client/static/js/2.84783e3e.chunk.js"
   },
   {
     "revision": "2c69aaf6155d411bfd5915efbd3f1059",
-    "url": "/dance-town-client/static/js/2.b514a058.chunk.js.LICENSE.txt"
+    "url": "/dance-town-client/static/js/2.84783e3e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "30f9966976f7773871b6",
-    "url": "/dance-town-client/static/js/main.42535a41.chunk.js"
+    "revision": "6dab7a7f9301011a3c28",
+    "url": "/dance-town-client/static/js/main.567155b8.chunk.js"
   },
   {
     "revision": "92327b3b52e2d34aef85",
