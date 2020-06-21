@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/dance-town-client/static/css/main.58335bf0.chunk.css",
-    "main.js": "/dance-town-client/static/js/main.433c5353.chunk.js",
-    "main.js.map": "/dance-town-client/static/js/main.433c5353.chunk.js.map",
+    "main.js": "/dance-town-client/static/js/main.6c0894f8.chunk.js",
+    "main.js.map": "/dance-town-client/static/js/main.6c0894f8.chunk.js.map",
     "runtime-main.js": "/dance-town-client/static/js/runtime-main.078f421a.js",
     "runtime-main.js.map": "/dance-town-client/static/js/runtime-main.078f421a.js.map",
     "static/js/2.54da96ef.chunk.js": "/dance-town-client/static/js/2.54da96ef.chunk.js",
     "static/js/2.54da96ef.chunk.js.map": "/dance-town-client/static/js/2.54da96ef.chunk.js.map",
     "index.html": "/dance-town-client/index.html",
-    "precache-manifest.942824ae67d78e35cfbb1d56ea173d85.js": "/dance-town-client/precache-manifest.942824ae67d78e35cfbb1d56ea173d85.js",
+    "precache-manifest.68392594425b017dfa7212a7ac4569f2.js": "/dance-town-client/precache-manifest.68392594425b017dfa7212a7ac4569f2.js",
     "service-worker.js": "/dance-town-client/service-worker.js",
     "static/css/main.58335bf0.chunk.css.map": "/dance-town-client/static/css/main.58335bf0.chunk.css.map",
     "static/js/2.54da96ef.chunk.js.LICENSE.txt": "/dance-town-client/static/js/2.54da96ef.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.078f421a.js",
     "static/js/2.54da96ef.chunk.js",
     "static/css/main.58335bf0.chunk.css",
-    "static/js/main.433c5353.chunk.js"
+    "static/js/main.6c0894f8.chunk.js"
   ]
 }
