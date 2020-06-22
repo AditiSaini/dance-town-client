@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
+import { Auth } from 'aws-amplify';
 import { Link } from "react-router-dom";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Home.css";
 
 export default class Home extends Component {
+
   constructor(props) {
     super(props);
 
@@ -16,8 +18,19 @@ export default class Home extends Component {
 
   async componentDidMount() {
     if (!this.props.isAuthenticated) {
+      try {
+        const challenges = await this.challenges();
+        console.log(challenges);
+      } catch (e) {
+        console.log(e);
+      }
       return;
     }
+    //inside some async function, AFTER the user has authenticated with Cognito
+    const tokens = await Auth.currentSession();
+    const userName = tokens.getIdToken().payload;
+    console.log(userName);
+    console.log(tokens);
 
     try {
       const notes = await this.notes();
@@ -30,7 +43,11 @@ export default class Home extends Component {
   }
 
   notes() {
+    console.log(API.get("notes", "/notes"));
     return API.get("notes", "/notes");
+  }
+  challenges() {
+    return API.get("notes","/challenges")
   }
 
   handleNoteClick = event => {
