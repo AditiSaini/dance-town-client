@@ -69,15 +69,15 @@ export default function NewNote() {
           <FormControl onChange={handleFileChange} type="file" />
         </FormGroup>
         <LoaderButton
-          block
-          type="submit"
-          bsSize="large"
-          bsStyle="primary"
-          isLoading={isLoading}
-          disabled={!validateForm()}
-        >
-          Create
-        </LoaderButton>
+            block
+            bsStyle="primary"
+            bsSize="large"
+            disabled={!validateForm()}
+            type="submit"
+            isLoading={isLoading}
+            text="Create"
+            loadingText="Creating…"
+          />
       </form>
     </div>
   );

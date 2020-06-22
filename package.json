@@ -1,6 +1,6 @@
 {
   "name": "dancetown-client",
-  "homepage": "http://therealchiendat.github.io/dance-town-client/",
+  "homepage": "https://therealchiendat.github.io/dance-town-client/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
