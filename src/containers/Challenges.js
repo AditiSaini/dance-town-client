@@ -4,6 +4,8 @@ import { API, Storage } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
 import { onError } from "../libs/errorLib";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./Challenges.css";
@@ -14,6 +16,7 @@ export default function Notes() {
     const history = useHistory();
     const [challenge, setNote] = useState(null);
     const [content, setContent] = useState("");
+    const [isPublic, setPublic] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
 
@@ -25,14 +28,14 @@ export default function Notes() {
         async function onLoad() {
             try {
                 const challenge = await loadNote();
-                const { content, attachment } = challenge;
-
+                const { content, attachment, isPublic } = challenge;
                 if (attachment) {
                     challenge.attachmentURL = await Storage.vault.get(attachment);
                 }
 
                 setContent(content);
                 setNote(challenge);
+                setPublic(isPublic);
             } catch (e) {
                 onError(e);
             }
@@ -82,7 +85,8 @@ export default function Notes() {
 
             await saveNote({
                 content,
-                attachment: attachment || challenge.attachment
+                attachment: attachment || challenge.attachment,
+                isPublic
             });
             history.push("/");
         } catch (e) {
@@ -129,20 +133,6 @@ export default function Notes() {
                         />
                     </FormGroup>
                     {challenge.attachment && (
-                        <FormGroup>
-                            <ControlLabel>Attachment</ControlLabel>
-                            <FormControl.Static>
-                                <a
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    href={challenge.attachmentURL}
-                                >
-                                    {formatFilename(challenge.attachment)}
-                                </a>
-                            </FormControl.Static>
-                        </FormGroup>
-                    )}
-                    {challenge.attachment && (
                         <video width="320" height="240" controls>
                             <source src={challenge.attachmentURL} type="video/mp4" />
                         </video>
@@ -151,16 +141,21 @@ export default function Notes() {
                         {!challenge.attachment && <ControlLabel>Attachment</ControlLabel>}
                         <FormControl onChange={handleFileChange} type="file" />
                     </FormGroup>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox checked={isPublic} onChange={_ => setPublic(!isPublic)} name="isPublic" />}
+                            label="Make item public"
+                        />
+                    </FormGroup>
                     <LoaderButton
                         block
                         type="submit"
                         bsSize="large"
                         bsStyle="primary"
+                        text="save"
                         isLoading={isLoading}
                         disabled={!validateForm()}
-                    >
-                        Save
-          </LoaderButton>
+                    />
                     <LoaderButton
                         block
                         bsSize="large"

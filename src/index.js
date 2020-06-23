@@ -33,9 +33,9 @@ Amplify.configure({
 });
 
 ReactDOM.render(
-  <HashRouter basename='/'>
+  <Router basename='/'>
     <App />
-  </HashRouter>,
+  </Router>,
   document.getElementById('root')
 );
 

@@ -2,7 +2,7 @@ export default {
   MAX_ATTACHMENT_SIZE: 50000000,
   s3: {
     REGION: "us-east-1",
-    BUCKET: "dance-town-app-api-dev-0-attachmentsbucket-1m6dsoqfa81qq"
+    BUCKET: "dancetown-app-api-dev-attachmentsbucket-ic13uq6xqxwk"
   },
   apiGateway: {
     REGION: "us-east-1",

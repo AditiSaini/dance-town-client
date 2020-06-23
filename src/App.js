@@ -33,22 +33,22 @@ class App extends Component {
   }
 
   loadFacebookSDK() {
-    window.fbAsyncInit = function() {
+    window.fbAsyncInit = function () {
       window.FB.init({
-        appId            : config.social.FB,
-        autoLogAppEvents : true,
-        xfbml            : true,
-        version          : 'v3.1'
+        appId: config.social.FB,
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v3.1'
       });
     };
 
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   }
 
   userHasAuthenticated = authenticated => {
@@ -82,17 +82,22 @@ class App extends Component {
             <Navbar.Collapse>
               <Nav pullRight>
                 {this.state.isAuthenticated ? (
-                  <NavItem onClick={this.handleLogout}>Logout</NavItem>
-                ) : (
                   <Fragment>
-                    <LinkContainer to="/signup">
-                      <NavItem>Signup</NavItem>
+                    <LinkContainer to="/profile">
+                      <NavItem>Profile</NavItem>
                     </LinkContainer>
-                    <LinkContainer to="/login">
-                      <NavItem>Login</NavItem>
-                    </LinkContainer>
+                    <NavItem onClick={this.handleLogout}>Logout</NavItem>
                   </Fragment>
-                )}
+                ) : (
+                    <Fragment>
+                      <LinkContainer to="/signup">
+                        <NavItem>Signup</NavItem>
+                      </LinkContainer>
+                      <LinkContainer to="/login">
+                        <NavItem>Login</NavItem>
+                      </LinkContainer>
+                    </Fragment>
+                  )}
               </Nav>
             </Navbar.Collapse>
           </Navbar>

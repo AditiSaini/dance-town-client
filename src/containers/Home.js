@@ -3,6 +3,7 @@ import { API } from "aws-amplify";
 import { Auth } from 'aws-amplify';
 import { Link } from "react-router-dom";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 import "./Home.css";
 
 export default class Home extends Component {
@@ -18,22 +19,11 @@ export default class Home extends Component {
 
   async componentDidMount() {
     if (!this.props.isAuthenticated) {
-      try {
-        const challenges = await this.challenges();
-        console.log(challenges);
-      } catch (e) {
-        console.log(e);
-      }
       return;
     }
-    //inside some async function, AFTER the user has authenticated with Cognito
-    const tokens = await Auth.currentSession();
-    const userName = tokens.getIdToken().payload;
-    console.log(userName);
-    console.log(tokens);
 
     try {
-      const notes = await this.notes();
+      const notes = await this.challenges();
       this.setState({ notes });
     } catch (e) {
       alert(e);
@@ -42,12 +32,8 @@ export default class Home extends Component {
     this.setState({ isLoading: false });
   }
 
-  notes() {
-    console.log(API.get("notes", "/notes"));
-    return API.get("notes", "/notes");
-  }
   challenges() {
-    return API.get("notes","/challenges")
+    return API.get("notes", "/challenges")
   }
 
   handleNoteClick = event => {
@@ -55,27 +41,34 @@ export default class Home extends Component {
     this.props.history.push(event.currentTarget.getAttribute("href"));
   }
 
-  renderNotesList(notes) {
+  renderNotesList1(notes) {
+    const s3URL = 'https://dancetown-app-api-dev-attachmentsbucket-ic13uq6xqxwk.s3.amazonaws.com/private';
+    
     return [{}].concat(notes).map(
       (note, i) =>
         i !== 0
-          ? <ListGroupItem
-              key={note.noteId}
-              href={`/challenges/${note.noteId}`}
-              onClick={this.handleNoteClick}
-              header={note.content.trim().split("\n")[0]}
-            >
-              {"Created: " + new Date(note.createdAt).toLocaleString()}
-            </ListGroupItem>
-          : <ListGroupItem
-              key="new"
-              href="/challenges/new"
-              onClick={this.handleNoteClick}
-            >
-              <h4>
-                <b>{"\uFF0B"}</b> Create a new challenge
-              </h4>
-            </ListGroupItem>
+          ? 
+          <Card className="card-container"
+            key={note.noteId}
+            href={`/challenges/${note.noteId}`}
+            onClick={this.handleNoteClick}
+          >
+            <CardMedia
+              className="card-video"
+              component="video"
+              image={s3URL + '/' + note.userId + '/' + note.attachment}
+              title="Media"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h4" component="h2">
+                {note.content.trim().split("\n")[0]}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {"Created: " + new Date(note.createdAt).toLocaleString()}
+              </Typography>
+            </CardContent>
+          </Card>
+          : null
     );
   }
 
@@ -99,10 +92,10 @@ export default class Home extends Component {
   renderNotes() {
     return (
       <div className="notes">
-        <PageHeader>Your Challenges</PageHeader>
-        <ListGroup>
-          {!this.state.isLoading && this.renderNotesList(this.state.notes)}
-        </ListGroup>
+        <PageHeader>Global challenges:</PageHeader>
+        <div className="notes-container">
+          {!this.state.isLoading && this.renderNotesList1(this.state.notes)}
+        </div>
       </div>
     );
   }
